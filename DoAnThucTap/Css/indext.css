@@ -1,0 +1,459 @@
+﻿/*Search*/
+* {
+    box-sizing: border-box;
+}
+
+
+a:hover {
+    text-decoration: none;
+}
+
+#wrapper {
+    width: 1010px;
+    margin: 0 auto;
+}
+
+#header {
+    width: 100%;
+    float: left;
+    height: 200px;
+}
+
+#banner {
+    width: 100%;
+    float: left;
+    height: 200px;
+}
+
+/*Menu*/
+#menu {
+    width: 100%;
+    float: left;
+    margin-top: 9px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #0b6bbb;
+}
+
+    .topnav a {
+        float: left;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        padding: 5px;
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+        .topnav a:hover {
+            background-color: #225a89;
+            color: black;
+            text-decoration: none;
+        }
+
+    .topnav .search-container {
+        margin-top: 4px;
+        float: right;
+    }
+
+    .topnav input[type=text] {
+        font-size: 17px;
+        border: none;
+    }
+
+    .topnav .search-container button {
+        float: right;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .topnav .search-container button:hover {
+            background: #ccc;
+        }
+
+/*Giao Diện chính*/
+#content {
+    margin-top: 10px;
+    width: 100%;
+    float: left;
+}
+
+/*Cột trái*/
+#left {
+    width: 20%;
+    float: left;
+}
+
+    #left .left-DanhMuc {
+        border: 2px solid #0b6bbb;
+        border-radius: 8px;
+    }
+
+    #left .left-HoTro {
+        margin-top: 5px;
+        border-radius: 8px;
+        border: 2px solid #0b6bbb;
+    }
+
+.header-module {
+    padding: 10px;
+    background-image: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%);
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    color: #000000;
+}
+
+#Group-items {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+    #Group-items li {
+        background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        width: 100%;
+        list-style: inside none;
+        height: 30px;
+    }
+
+        #Group-items li:hover {
+            background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
+        }
+
+        #Group-items li i {
+            margin-left: 15px;
+        }
+
+        #Group-items li a {
+            color: #052465;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+
+/*Giữa*/
+#main {
+    width: 58%;
+    margin-left: 5px;
+    float: left;
+    border: 2px solid #f8b805;
+    border-radius: 10px;
+}
+
+.header {
+    padding: 10px;
+    font-size: 15px;
+    background-image: linear-gradient(-225deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);
+    font-weight: bold;
+    border-radius: 3px;
+    color: #db1515;
+}
+
+.list-item {
+    text-align: center;
+    margin-top: 5px;
+    width: 200px;
+    height: 260px;
+    margin-bottom: 5px;
+}
+
+.Group-items li {
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/*Phải*/
+#right {
+    margin-left: 5px;
+    width: 20%;
+    float: left;
+    border: 2px solid #0b6bbb;
+    border-radius: 10px;
+}
+
+#footer {
+    margin-top: 10px;
+    width: 100%;
+    float: left;
+    background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+    color: #000000;
+    border: 1px solid #ff9600;
+}
+
+
+.thongbao {
+    position: fixed;
+    bottom: 100px;
+    left: 40px;
+    z-index: 999999;
+}
+
+.btn-popop {
+    background: #ed5454;
+}
+
+    .btn-popop:focus {
+        background: #f18310;
+    }
+
+    .btn-popop:hover {
+        background: #f1c310;
+    }
+
+/*Chỉnh Điện Thoại Rung*/
+.hotline-phone-ring-wrap {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999999;
+}
+
+.hotline-phone-ring {
+    position: relative;
+    visibility: visible;
+    background-color: transparent;
+    width: 110px;
+    height: 110px;
+    cursor: pointer;
+    z-index: 11;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transition: visibility .5s;
+    left: 0;
+    bottom: 0;
+    display: block;
+}
+
+.hotline-phone-ring-circle {
+    width: 85px;
+    height: 85px;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    background-color: transparent;
+    border-radius: 100%;
+    border: 2px solid #e60808;
+    -webkit-animation: phonering-alo-circle-anim 1.2s infinite ease-in-out;
+    animation: phonering-alo-circle-anim 1.2s infinite ease-in-out;
+    transition: all .5s;
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    opacity: 0.5;
+}
+
+.hotline-phone-ring-circle-fill {
+    width: 55px;
+    height: 55px;
+    top: 25px;
+    left: 25px;
+    position: absolute;
+    background-color: rgba(230, 8, 8, 0.7);
+    border-radius: 100%;
+    border: 2px solid transparent;
+    -webkit-animation: phonering-alo-circle-fill-anim 2.3s infinite ease-in-out;
+    animation: phonering-alo-circle-fill-anim 2.3s infinite ease-in-out;
+    transition: all .5s;
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.hotline-phone-ring-img-circle {
+    background-color: #e60808;
+    width: 33px;
+    height: 33px;
+    top: 37px;
+    left: 37px;
+    position: absolute;
+    background-size: 20px;
+    border-radius: 100%;
+    border: 2px solid transparent;
+    -webkit-animation: phonering-alo-circle-img-anim 1s infinite ease-in-out;
+    animation: phonering-alo-circle-img-anim 1s infinite ease-in-out;
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .hotline-phone-ring-img-circle .pps-btn-img {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+        .hotline-phone-ring-img-circle .pps-btn-img img {
+            width: 20px;
+            height: 20px;
+        }
+
+.hotline-bar {
+    position: absolute;
+    background: rgba(230, 8, 8, 0.75);
+    height: 40px;
+    width: 180px;
+    line-height: 40px;
+    border-radius: 3px;
+    padding: 0 10px;
+    background-size: 100%;
+    cursor: pointer;
+    transition: all 0.8s;
+    -webkit-transition: all 0.8s;
+    z-index: 9;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 50px !important;
+    /* width: 175px !important; */
+    left: 33px;
+    bottom: 37px;
+}
+
+    .hotline-bar > a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: bold;
+        text-indent: 50px;
+        display: block;
+        letter-spacing: 1px;
+        line-height: 40px;
+        font-family: Arial;
+    }
+
+        .hotline-bar > a:hover,
+        .hotline-bar > a:active {
+            color: #fff;
+        }
+
+@-webkit-keyframes phonering-alo-circle-anim {
+    0% {
+        -webkit-transform: rotate(0) scale(0.5) skew(1deg);
+        -webkit-opacity: 0.1;
+    }
+
+    30% {
+        -webkit-transform: rotate(0) scale(0.7) skew(1deg);
+        -webkit-opacity: 0.5;
+    }
+
+    100% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+        -webkit-opacity: 0.1;
+    }
+}
+
+@-webkit-keyframes phonering-alo-circle-fill-anim {
+    0% {
+        -webkit-transform: rotate(0) scale(0.7) skew(1deg);
+        opacity: 0.6;
+    }
+
+    50% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+        opacity: 0.6;
+    }
+
+    100% {
+        -webkit-transform: rotate(0) scale(0.7) skew(1deg);
+        opacity: 0.6;
+    }
+}
+
+@-webkit-keyframes phonering-alo-circle-img-anim {
+    0% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+
+    10% {
+        -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+
+    20% {
+        -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+
+    30% {
+        -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+
+    40% {
+        -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+
+    50% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+}
+
+@media (max-width: 620px) {
+    .hotline-bar {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    body{
+        width: 100%;
+    }
+
+    /*Menu*/
+    .topnav .search-container {
+        float: none;
+    }
+
+        .topnav a, .topnav input[type=text], .topnav .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+        }
+
+            .topnav a:hover {
+                text-decoration: none;
+            }
+
+    .topnav input[type=text] {
+        border: 1px solid #ccc;
+    }
+
+    /* Banner*/
+    .remove {
+        display: none;
+    }
+
+    /* footer*/
+    #footer {
+        text-align: center;
+    }
+
+    #left {
+        width: 20%;
+    }
+
+    #main {
+        width: 79%;
+    }
+}

@@ -1,0 +1,328 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="indext.Master.cs" Inherits="DoAnThucTap.indext" %>
+
+<%@ Register Src="~/PageShow/Banner.ascx" TagPrefix="uc1" TagName="Banner" %>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Trang Chính</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Css/indext.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <%--Login Google--%>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="1027000495627-hfob018rp675u3p6uoevrjg3c1r4bs40.apps.googleusercontent.com" />
+
+    <%--Search--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .badge-notify {
+            background: red;
+            position: relative;
+            top: -20px;
+            right: 10px;
+        }
+
+        .badge-icon {
+            display: inline-block;
+            min-width: 10px;
+            padding: 3px 7px;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            background-color: red;
+            border-radius: 10px;
+        }
+
+        #link-Login {
+            display: none;
+        }
+
+        #link-Profile {
+            display: none;
+        }
+    </style>
+
+    <%--Cookie--%>
+    <script>
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function CheckCookie() {
+            var user = getCookie("User");
+            var login = document.getElementById("link-Login");
+            var logout = document.getElementById("link-Profile");
+
+            console.log(login);
+            console.log(logout);
+            if (user != null && user != "") {
+                login.style.display = 'none';
+                logout.style.display = 'block';
+            }
+            else {
+                login.style.display = 'block';
+                logout.style.display = 'none';
+            }
+
+        }
+    </script>
+</head>
+<body onload="CheckCookie()">
+    <form id="form1" runat="server" >
+        <div style="float: right; cursor: pointer; top: 100px; right: 20px; position: fixed;">
+            <h1><span class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge-notify badge-icon my-cart-badge"></span></span></h1>
+        </div>
+
+        <div id="wrapper">
+            <div id="header">
+                <div id="banner" class="remove">
+                    <uc1:Banner runat="server" ID="Banner1" />
+                </div>
+                <div id="menu">
+                    <div class="topnav">
+                        <a href="/TrangChu">Trang Chủ</a>
+                        <a href="/DangNhapKhachHang" id="link-Login">Đăng Nhập</a>
+                        <a href="/HoSo/Profile" id="link-Profile">Hồ Sơ</a>
+                        <div class="search-container">
+                            <div>
+                                <input type="text" id="txtSearch" runat="server" placeholder="Tìm Kiếm.." name="search">
+                                <button id="btnSearch" runat="server" onserverclick="btnSearch_Click"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+
+                <!-- Load Facebook SDK for JavaScript -->
+                <div id="fb-root"></div>
+                <script>
+                    window.fbAsyncInit = function () {
+                        FB.init({
+                            xfbml: true,
+                            version: 'v8.0'
+                        });
+                    };
+
+                    (function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
+
+                <!-- Your Chat Plugin code -->
+                <div class="fb-customerchat"
+                    attribution="setup_tool"
+                    page_id="102169975028849"
+                    logged_in_greeting="Bạn cần hỗ trợ gì"
+                    logged_out_greeting="Bạn cần hỗ trợ gì">
+                </div>
+
+                <%--Foooter--%>
+                <div id="footer">
+                    <div class="col-lg-4">
+                        <div style="padding: 5px;">
+                            <h4 style="font-weight: bold;">Hình Thức Thanh Toán</h4>
+                            <br />
+                            <img src="https://thietkelogo.vn/wp-content/uploads/2015/12/tong-hop-logo-cua-cac-ngan-hang.jpg" width="90" />&emsp;
+                        <img src="https://i2.wp.com/datvandon.net/wp-content/uploads/2020/02/ngan-hang-vp-bank-la-ngan-hang-gi.jpg?fit=900%2C551&amp;ssl=1?v=1581063328" width="90" /><br />
+                            <img src="https://dcdesign.vn/image/data/DC%20Design/BAI%20VIET%20CHUYEN%20NGANH/Logo%20dep/logo-ngan-hang%205_resize%20(1).png" width="90" />&emsp;
+                        <img src="https://m.thebank.vn/uploads/2019/03/28/thebank_logo_sacombank_1553765050.png" width="90" />
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div style="padding: 5px;">
+                            <h4 style="font-weight: bold;">Thông Tin Liên Hệ</h4>
+                            <br />
+                            Điện Thoại: 0582342158
+                        <br />
+                            Địa chỉ: Nha Trang - Khánh Hòa
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div style="padding: 5px;">
+                            <h4 style="font-weight: bold;">Gửi Câu Hỏi</h4>
+                            <br />
+                            Email : &emsp;&ensp;&ensp;<asp:TextBox ID="TxTEmail" runat="server" autocomplete="off"></asp:TextBox>
+                            &ensp;
+                        <asp:RequiredFieldValidator ID="RFVemail" runat="server" ErrorMessage="*" ValidationGroup="Contact" ControlToValidate="TxTEmail" ForeColor="Red"></asp:RequiredFieldValidator>
+                            &ensp;<asp:RegularExpressionValidator ID="REVemail" runat="server" ValidationGroup="Contact" ErrorMessage="Email không hợp lệ" ControlToValidate="TxTEmail" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator><br />
+
+                            Câu Hỏi : &emsp;<asp:TextBox ID="TxTCauHoi" runat="server" autocomplete="off"></asp:TextBox>
+                            &ensp;
+                        <asp:RequiredFieldValidator ID="RFVcauhoi" runat="server" ErrorMessage="*" ValidationGroup="Contact" ControlToValidate="TxTCauHoi" ForeColor="Red"></asp:RequiredFieldValidator><br />
+                            <br />
+                            <asp:Button ID="Button1" runat="server" Text="Gửi" CssClass="btn btn-success" ValidationGroup="Contact" OnClientClick="if(!confirm('Câu hỏi sẽ được gửi đi ?')) return false;" OnClick="Button1_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="thongbao">
+            <h3>
+                <button type="button" class="btn-popop" data-toggle="modal" data-target="#ModalEmail"><i class="far fa-bell"></i></button>
+            </h3>
+        </div>
+
+        <%-- Điện Thoại Rung--%>
+        <div class="hotline-phone-ring-wrap">
+            <div class="hotline-phone-ring">
+                <div class="hotline-phone-ring-circle"></div>
+                <div class="hotline-phone-ring-circle-fill"></div>
+                <div class="hotline-phone-ring-img-circle">
+                    <a href="tel:0582342158" class="pps-btn-img">
+                        <img src="https://nguyenhung.net/wp-content/uploads/2019/05/icon-call-nh.png" alt="Gọi điện thoại" width="50">
+                    </a>
+                </div>
+            </div>
+            <div class="hotline-bar">
+                <a href="tel:0582342158">
+                    <span class="text-hotline">058.234.2158</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <%--Form Nhập Email--%>
+        <div class="modal fade" id="ModalEmail" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 style="text-align: center;">Nhập Email Đăng Ký</h4>
+                    </div>
+                    <div class="modal-body">
+                        Email : &emsp;&ensp;&ensp;<asp:TextBox ID="ttbEmail" runat="server" autocomplete="off"></asp:TextBox>
+                        &emsp;
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorEmail" runat="server" ErrorMessage="*" ControlToValidate="ttbEmail" ValidationGroup="SignEmail" ForeColor="Red"></asp:RequiredFieldValidator>
+                        &ensp;<asp:RegularExpressionValidator ID="RegularExpressionValidatorEmail" runat="server" ErrorMessage="Email không hợp lệ" ValidationGroup="SignEmail" ControlToValidate="ttbEmail" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator><br />
+
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnDangky" runat="server" Text="Đăng Ký" CssClass="btn btn-success" OnClick="btnDangKyEmail_Click" ValidationGroup="SignEmail"/>
+                        <button type="button" data-dismiss="modal" class="btn btn-danger">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            //Xóa Quảng Cáo
+            var myVar = setInterval(function () { myTimer() }, 0);
+            function myTimer() {
+                var d = new Date();
+                var t = d.toLocaleTimeString();
+                $("div[style='opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;']").remove();
+                $("script[src='http://ads.mgmt.somee.com/serveimages/ad2/WholeInsert4.js']").remove();
+                $("iframe[src='http://www.superfish.com/ws/userData.jsp?dlsource=hhvzmikw&userid=NTBCNTBC&ver=13.1.3.15']").remove();
+                $("div[onmouseover='S_ssac();']").remove();
+                $("a[href='http://somee.com']").parent().remove();
+                $("a[href='http://somee.com/VirtualServer.aspx']").parent().parent().parent().remove();
+                $("#dp_swf_engine").remove();
+                $("#TT_Frame").remove();
+            }
+
+            $(document).ready(function () {
+                $(document).on('show.bs.modal', '.modal', function () {
+                    var zIndex = 1040 + (10 * $('.modal:visible').length);
+                    $(this).css('z-index', zIndex);
+                    setTimeout(function () {
+                        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+                    }, 0);
+                });
+            });
+        </script>
+
+        <%-- Giỏ Hàng--%>
+        <script src="/js/jquery-2.2.3.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.mycart.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function Start() {
+
+                $('.my-cart-btn').myCart({
+                    currencySymbol: ' VNĐ',
+                    classCartIcon: 'my-cart-icon',
+                    classCartBadge: 'my-cart-badge',
+                    classProductQuantity: 'my-product-quantity',
+                    classProductRemove: 'my-product-remove',
+                    classCheckoutCart: 'my-cart-checkout',
+                    affixCartIcon: true,
+                    showCheckoutModal: true,
+                    numberOfDecimals: 0,
+
+                    afterAddOnCart: function (products, totalPrice, totalQuantity) {
+                        console.log("afterAddOnCart", products, totalPrice, totalQuantity);
+                    },
+                    clickOnCartIcon: function ($cartIcon, products, totalPrice, totalQuantity) {
+                        console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+                    },
+
+                });
+
+
+
+            });
+    </script>
+
+        <%-- Autocomplete TextBox--%>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                $("#txtSearch ").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "/AjaxServer.asmx/GetItem",
+                            data: "{Name : '" + request.term + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                response(data.d);
+                            }
+                        });
+                    },
+
+                    minlenght: 1,
+                });
+            });
+        </script>
+
+    </form>
+</body>
+</html>
